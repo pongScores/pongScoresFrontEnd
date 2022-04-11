@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const playerOne = {
 	name: 'Kemba',
@@ -13,15 +13,43 @@ const playerTwo = {
 	losses: 0,
 };
 
-function Match(winner, loser) {
+function Match() {
+	const initialState = {
+		winner: '',
+		loser: '',
+	};
+
+	const submitMatch = (event) => {
+		event.preventDefault();
+		console.log(selectState);
+
+		setSelectState(initialState);
+	};
+	function submitMatch() {}
 	// winner.wins = winner.wins + 1;
 	// loser.losses = loser.losses + 1;
+
+	const [selectState, setSelectState] = useState(initialState);
+	const [wins, setWins] = useState(0);
+	const [losses, setLosses] = useState(0);
+
+	function countWins() {
+		let playerWon = wins + 1;
+		setWins(playerWon);
+	}
+
+	function countLosses() {
+		let playerLost = losses + 1;
+		setLosses(playerLost);
+	}
+
+	useEffect(() => {}, []);
 
 	return (
 		<div>
 			<h4>
 				Winner:
-				<select name="players" id="players">
+				<select name="players" id="winner">
 					<option value="select"> Select Player </option>
 					<option value={playerOne.name}> {playerOne.name} </option>
 					<option value={playerTwo.name}> {playerTwo.name} </option>
@@ -29,7 +57,7 @@ function Match(winner, loser) {
 			</h4>
 			<h4>
 				Loser:
-				<select name="players" id="players">
+				<select name="players" id="loser">
 					<option value="select"> Select Player </option>
 					<option value={playerOne.name}> {playerOne.name} </option>
 					<option value={playerTwo.name}> {playerTwo.name} </option>
@@ -38,6 +66,9 @@ function Match(winner, loser) {
 
 			{/* submit logic here */}
 			<button type="submit">Submit</button>
+			{/* onclick, invoke winner/loser function */}
+			{/* if winner, wins+1 */}
+			{/* if loser, losses + 1 */}
 		</div>
 	);
 }
