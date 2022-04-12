@@ -23,41 +23,39 @@ function Match() {
 
 	const [selectState, setSelectState] = useState(initialState);
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		console.log(selectState);
-		setSelectState(initialState);
-		// let winner = selectWinner();
-		// let loser = selectLoser();
-
-		console.log(playerOne);
-		console.log(playerTwo);
-	};
-
-	const handleChange = (event) => {
-		console.log(event.target.id);
-		setSelectState({ ...selectState, [event.target.id]: event.target.value });
-	};
-
 	const [wins, setWins] = useState(0);
 	const [losses, setLosses] = useState(0);
 
-	function countWins() {
+	const countWins = (event) => {
+		event.preventDefault();
+
 		let playerWon = wins + 1;
 		setWins(playerWon);
-	}
+	};
 
 	function countLosses() {
 		let playerLost = losses + 1;
 		setLosses(playerLost);
 	}
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(selectState);
+		console.log(selectState.winner, 'wins');
+		// console.log(selectState.winner[wins]);
 
-	// const selectWinner = document.getElementById('winner').value;
+		setSelectState(initialState);
+		// let winner = selectWinner();
+		// let loser = selectLoser();
 
-	// const selectLoser = document.getElementById('loser').value;
+		// console.log(playerOne);
+		// console.log(playerTwo);
+	};
 
-	// this.handleChange = this.handleChange.bind(this);
-	// this.handleSubmit = this.handleSubmit.bind(this);
+	const handleChange = (event) => {
+		console.log(event.target.id);
+		setSelectState({ ...selectState, [event.target.id]: event.target.value });
+		console.log(event.target.value);
+	};
 
 	useEffect(() => {}, []);
 
@@ -65,7 +63,7 @@ function Match() {
 		<div>
 			<form onSubmit={handleSubmit}>
 				<h3>
-					<label for="winner"> Winner:</label>
+					<label htmlFor="winner"> Winner:</label>
 					<select
 						name="players"
 						id="winner"
@@ -77,7 +75,7 @@ function Match() {
 					</select>
 				</h3>
 				<h3>
-					<label for="loser"> Loser:</label>
+					<label htmlFor="loser"> Loser:</label>
 					<select
 						name="players"
 						id="loser"
@@ -88,19 +86,12 @@ function Match() {
 						<option value={playerTwo.name}> {playerTwo.name} </option>
 					</select>
 				</h3>
-				{/* submit logic here */}
-				<button type="submit" onClick={handleSubmit}>
+				<button type="submit" onClick={(handleSubmit, countWins, countLosses)}>
 					Submit
 				</button>
-				{/* onclick, invoke winner/loser function */}
-				{/* if winner, wins+1 */}
-				{/* if loser, losses + 1 */}
 			</form>
 		</div>
 	);
 }
 
 export default Match;
-
-// if a player wins, wins +1
-// if a play loses, losses + 1
