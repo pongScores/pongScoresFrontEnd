@@ -26,11 +26,13 @@ function Match() {
 	const [wins, setWins] = useState(0);
 	const [losses, setLosses] = useState(0);
 
-	const countWins = (event) => {
-		event.preventDefault();
-
-		let playerWon = wins + 1;
-		setWins(playerWon);
+	const countWins = () => {
+		// if winner's name matches a name that exists,
+		// add a win
+		// let playerWon = wins + 1;
+		// setWins(playerWon);
+		setWins(wins + 1);
+		console.log(countWins);
 	};
 
 	function countLosses() {
@@ -42,20 +44,31 @@ function Match() {
 		console.log(selectState);
 		console.log(selectState.winner, 'wins');
 		// console.log(selectState.winner[wins]);
+		
+		countWins();
 
 		setSelectState(initialState);
 		// let winner = selectWinner();
 		// let loser = selectLoser();
 
-		// console.log(playerOne);
-		// console.log(playerTwo);
+		console.log(playerOne);
+		console.log(playerTwo);
 	};
 
 	const handleChange = (event) => {
 		console.log(event.target.id);
 		setSelectState({ ...selectState, [event.target.id]: event.target.value });
 		console.log(event.target.value);
+		console.log(event.target);
 	};
+
+	// Brainstorm solutions to update wins/losses
+	// If/Else statements ;
+	// If name of winner === name of somebody in list, add wins
+
+	const listPlayers = () => {
+		
+	}
 
 	useEffect(() => {}, []);
 
