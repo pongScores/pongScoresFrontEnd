@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API_URL from '../../apiConfig';
+import axios from 'axios';
+
 // put states for players
 let players = [
 	{
@@ -16,10 +18,6 @@ let players = [
 	},
 ];
 
-// target player one and player two instead of win
-// if player 1 = winner, player 1.wins +1
-// on submit, pass back player 1 or player 2 instead of names
-
 function Match(props) {
 	const initialState = {
 		winner: '',
@@ -33,41 +31,15 @@ function Match(props) {
 		losses: 0,
 	};
 
-	// initializing playerOne and playerTwo states, the states to be set once dropdown menu selects player name
-	// setPlayer state will use the state of player's name selected
-
-	const [playerOneState, setPlayerOneState] = useState(initialPlayerState);
-	const [playerTwoState, setPlayerTwoState] = useState(initialPlayerState);
+	// const [playerOneState, setPlayerOneState] = useState(initialPlayerState);
+	// const [playerTwoState, setPlayerTwoState] = useState(initialPlayerState);
 
 	const [selectState, setSelectState] = useState(initialState);
 	// playersData for API data
 	const [playersData, setPlayersData] = useState([]);
 
-	const [wins, setWins] = useState(0);
-	const [losses, setLosses] = useState(0);
-
-	/* const array = [1, 2, 3, 4, 5];
-
-// checks whether an element is even
-const even = (element) => element % 2 === 0;
-
-console.log(array.some(even));
-// expected output: true
- */
-
-	/* const arr = [{ id: 1, username: 'fred' }, { id: 2, username: 'bill' }, { id: 3, username: 'ted' }];
-
-function add(arr, name) {
-  const { length } = arr;
-  const id = length + 1;
-  const found = arr.some(el => el.username === name);
-  if (!found) arr.push({ id, username: name });
-  return arr;
-}
-
-console.log(add(arr, 'ted')); */
-
-	const chooseLoser = () => {};
+	// const [wins, setWins] = useState(0);
+	// const [losses, setLosses] = useState(0);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -86,7 +58,7 @@ console.log(add(arr, 'ted')); */
 			// if name of loser matches player at index, add 1 to that player's number of losses
 		}
 
-		// setSelectState(initialState);
+		setSelectState(initialState);
 		console.log(players);
 		// let winner = selectWinner();
 		// let loser = selectLoser();
@@ -96,52 +68,18 @@ console.log(add(arr, 'ted')); */
 		console.log(event.target.id);
 		setSelectState({ ...selectState, [event.target.id]: event.target.value });
 		console.log(event.target.value);
-
-		// const chooseWinner = (event, name) => {
-		// 	const winner = players.some((element) => element.name === name);
-		// 	if (event.target.value === winner) {
-		// 		setPlayerOneState(winner);
-		// 	}
-		// };
-		// console.log(playerOneState);
-
-		// for (let i = 0; i < players.length; i++) {
-		// 	if (players)
-
-		// }
-
-		// chooseWinner();
-
-		// map through array of players, look for a match to see if name of winner/loser matches name in array/objects
-
-		// set playerOne state to the the array index in players that matches the name of winner
-
-		// set playerTwo state to the the array index in players that matches the name of loser
-
-		// use array.some method to find if a match exists
 	};
-	// const chooseWinner = (event, name) => {
-	// 	const winner = players.some((element) => element.name === name);
-	// 	if (event.target.value === winner) {
-	// 		setPlayerOneState(winner);
-	// 	}
-	// };
-
-	// const addWins = (playerOneState) => {
-	// 	playerOneState.wins = playerOneState.wins + 1;
-	// 	console.log(players);
-	// };
 
 	const listPlayers = () => {};
 
-	// useEffect(() => {
-	// 	fetch(API_URL)
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			setPlayersData(data);
-	// 		})
-	// 		.catch(console.error);
-	// }, []);
+	useEffect(() => {
+		fetch(API_URL)
+			.then((res) => res.json())
+			.then((data) => {
+				setPlayersData(data);
+			})
+			.catch(console.error);
+	}, []);
 
 	return (
 		<div>
