@@ -70,17 +70,44 @@ function Match(props) {
 		console.log(event.target.value);
 	};
 
-	const listPlayers = () => {};
+	// useEffect(async () => {
+	// 	try {
+	// 		const response = await axios.get(API_URL).then((data) => {
+	// 			setPlayersData(data);
+	// 			console.log(playersData);
+	// 		});
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// }, []);
+
+	// useEffect(() => {
+	// 	try {
+	// 		const fetchData = async () => {
+	// 			const response = await axios.get(API_URL).then((data) => {
+	// 				setPlayersData(data);
+	// 			});
+	// 		};
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// }, []);
 
 	useEffect(() => {
-		fetch(API_URL)
-			.then((res) => res.json())
-			.then((data) => {
-				setPlayersData(data);
-			})
-			.catch(console.error);
+		const fetchData = async () => {
+			try {
+				const response = await fetch(API_URL);
+				const json = await response.json().then((data) => {
+					setPlayersData(data);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchData();
 	}, []);
 
+	console.log(playersData);
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
