@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from 'react';
-
-const playerOne = {
+import API_URL from '../../apiConfig';
+// put states for players
+let playerOne = {
 	name: 'Kemba',
 	rating: 1600,
 	wins: 0,
 	losses: 0,
 };
-const playerTwo = {
+let playerTwo = {
 	name: 'Krenko',
 	rating: 1400,
 	wins: 0,
 	losses: 0,
 };
 
-function Match() {
+// target player one and player two instead of win
+// if player 1 = winner, player 1.wins +1
+// on submit, pass back player 1 or player 2 instead of names
+
+function Match(props) {
 	let winner;
 	let loser;
+
 	const initialState = {
 		winner: '',
 		loser: '',
 	};
 
 	const [selectState, setSelectState] = useState(initialState);
+	const [playersData, setPlayersData] = useState([]);
 
 	const [wins, setWins] = useState(0);
 	const [losses, setLosses] = useState(0);
@@ -32,7 +39,7 @@ function Match() {
 		// let playerWon = wins + 1;
 		// setWins(playerWon);
 		setWins(wins + 1);
-		console.log(countWins);
+		// console.log(countWins);
 	};
 
 	function countLosses() {
@@ -42,9 +49,9 @@ function Match() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		console.log(selectState);
-		console.log(selectState.winner, 'wins');
-		// console.log(selectState.winner[wins]);
-		
+		// console.log(selectState.winner, 'wins');
+		console.log(selectState.winner);
+
 		countWins();
 
 		setSelectState(initialState);
@@ -66,11 +73,16 @@ function Match() {
 	// If/Else statements ;
 	// If name of winner === name of somebody in list, add wins
 
-	const listPlayers = () => {
-		
-	}
+	const listPlayers = () => {};
 
-	useEffect(() => {}, []);
+	// useEffect(() => {
+	// 	fetch(API_URL)
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			setPlayersData(data);
+	// 		})
+	// 		.catch(console.error);
+	// }, []);
 
 	return (
 		<div>

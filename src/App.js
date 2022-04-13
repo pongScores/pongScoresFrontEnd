@@ -16,7 +16,8 @@ function App() {
 			.then((res) => res.json())
 			.then((data) => {
 				setPlayersData(data);
-				console.log(data);
+				// console.log(data);
+				// console.log(data[0]);
 			})
 			.catch(console.error);
 	}, []);
