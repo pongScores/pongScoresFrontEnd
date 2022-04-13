@@ -76,18 +76,43 @@ console.log(add(arr, 'ted')); */
 		console.log(selectState.winner);
 		// chooseWinner();
 		// addWins();
+		for (let i = 0; i < players.length; i++) {
+			// if name of winner matches player at index, add 1 to that player's number of wins
+			if (selectState.winner === players[i].name) {
+				players[i].wins = players[i].wins + 1;
+			} else if (selectState.loser === players[i].name) {
+				players[i].losses = players[i].losses + 1;
+			}
+			// if name of loser matches player at index, add 1 to that player's number of losses
+		}
 
-		setSelectState(initialState);
+		// setSelectState(initialState);
 		console.log(players);
 		// let winner = selectWinner();
 		// let loser = selectLoser();
 	};
 
 	const handleChange = (event) => {
-		// console.log(event.target.id);
+		console.log(event.target.id);
 		setSelectState({ ...selectState, [event.target.id]: event.target.value });
 		console.log(event.target.value);
+
+		// const chooseWinner = (event, name) => {
+		// 	const winner = players.some((element) => element.name === name);
+		// 	if (event.target.value === winner) {
+		// 		setPlayerOneState(winner);
+		// 	}
+		// };
+		// console.log(playerOneState);
+
+		// for (let i = 0; i < players.length; i++) {
+		// 	if (players)
+
+		// }
+
 		// chooseWinner();
+
+		// map through array of players, look for a match to see if name of winner/loser matches name in array/objects
 
 		// set playerOne state to the the array index in players that matches the name of winner
 
