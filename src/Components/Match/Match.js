@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Match.css';
 import API_URL from '../../apiConfig';
 import axios from 'axios';
-// import axios from 'axios';
 
-// put states for players
 let players = [
 	{
 		name: 'Kemba',
@@ -20,7 +18,25 @@ let players = [
 	},
 ];
 
-function Match(props) {
+function Match(data, props) {
+	useEffect(() => {
+		axios(API_URL)
+			.then(({ data }) => {
+				setPlayersData(data);
+				const optionsArr = data.map((option) => {
+					return (
+						<option key={option.name} value={option.name}>
+							{option.name}
+						</option>
+					);
+				});
+				setOptions(optionsArr);
+				// console.log(options);
+			})
+			.catch(console.error);
+	}, []);
+	// console.log(playersData);
+
 	const initialState = {
 		winner: '',
 		loser: '',
@@ -38,13 +54,14 @@ function Match(props) {
 		try {
 			const response = await axios
 				.get(API_URL)
-				.then((data) => setPlayersList(data));
+				.then((response) => setPlayersList(response.data));
+			console.log(response.data);
 		} catch (error) {
 			console.log(error);
 		}
 		// console.log(playersList);
 	};
-	listPlayers();
+	// listPlayers();
 
 	// const [playerOneState, setPlayerOneState] = useState(initialPlayerState);
 	// const [playerTwoState, setPlayerTwoState] = useState(initialPlayerState);
@@ -57,7 +74,7 @@ function Match(props) {
 	// const [wins, setWins] = useState(0);
 	// const [losses, setLosses] = useState(0);
 
-	const handleSubmit = (event) => {
+	/* 	const handleSubmit = (event) => {
 		event.preventDefault();
 		console.log(selectState);
 		// console.log(selectState.winner, 'wins');
@@ -81,8 +98,35 @@ function Match(props) {
 
 		setSelectState(initialState);
 		console.log(players);
-		// let winner = selectWinner();
-		// let loser = selectLoser();
+		
+	}; */
+
+	// Copy of Handle Submit =======
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log(selectState);
+		// console.log(selectState.winner, 'wins');
+		console.log(selectState.winner);
+
+		for (let i = 0; i < playersData.length; i++) {
+			// if name of winner matches player at index, add 1 to that player's number of wins
+			if (selectState.winner === playersData[i].name) {
+				playersData[i].wins = playersData[i].wins + 1;
+				// if name of loser matches player at index, add 1 to that player's number of losses
+			} else if (selectState.loser === playersData[i].name) {
+				playersData[i].losses = playersData[i].losses + 1;
+			}
+			axios
+				.put(API_URL + `${playersData[i].id}`, playersData[i])
+				.then((res) => {
+					if (res.status === 200) {
+						listPlayers();
+					}
+				});
+		}
+
+		setSelectState(initialState);
+		console.log(players);
 	};
 
 	const handleChange = (event) => {
@@ -91,50 +135,32 @@ function Match(props) {
 		console.log(event.target.value);
 	};
 
-	// useEffect(async () => {
-	// 	try {
-	// 		const response = await axios.get(API_URL).then((data) => {
-	// 			setPlayersData(data);
-	// 			console.log(playersData);
-	// 		});
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// }, []);
+	// console.log(`playersData[0].${_id}`);
+	// Working code without Axios!
 
 	// useEffect(() => {
-	// 	try {
-	// 		const fetchData = async () => {
-	// 			const response = await axios.get(API_URL).then((data) => {
+	// 	const fetchData = async () => {
+	// 		try {
+	// 			const response = await fetch(API_URL);
+	// 			const jsonData = await response.json().then((data) => {
+	// 				// console.log(data, 'data');
 	// 				setPlayersData(data);
+	// 				// console.log(data, 'inside use effect');
+	// 				// console.log(data);
+	// 				const optionsArr = data.map((option) => {
+	// 					return <option value={option.name}> {option.name} </option>;
+	// 				});
+	// 				setOptions(optionsArr);
+	// 				// console.log(options);
 	// 			});
-	// 		};
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	};
+	// 	fetchData();
 	// }, []);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch(API_URL);
-				const jsonData = await response.json().then((data) => {
-					// console.log(data, 'data');
-					setPlayersData(data);
-					// console.log(data, 'inside use effect');
-					// console.log(data);
-					const optionsArr = data.map((option) => {
-						return <option value={option.name}> {option.name} </option>;
-					});
-					setOptions(optionsArr);
-					// console.log(options);
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		fetchData();
-	}, []);
+	// Axios attempt for useEffect
 
 	return (
 		<div>

@@ -2,6 +2,6 @@
 // const API_URL =
 // 	window.location.hostname === 'localhost' ? 'http://localhost:8000/' : '';
 
-const API_URL = 'https://fierce-shelf-71912.herokuapp.com/players';
+const API_URL = 'https://fierce-shelf-71912.herokuapp.com/players/';
 
 export default API_URL;
