@@ -16,11 +16,9 @@ function Match(props) {
 					);
 				});
 				setOptions(optionsArr);
-				// console.log(options);
 			})
 			.catch(console.error);
 	}, []);
-	// console.log(playersData);
 
 	const initialState = {
 		winner: '',
@@ -45,22 +43,24 @@ function Match(props) {
 		}
 	};
 
+	// Hooks
 	const [selectState, setSelectState] = useState(initialState);
-	// playersData for API data
 	const [playersData, setPlayersData] = useState([]);
 	const [options, setOptions] = useState([]);
+	const [selectDisabled, setSelectDisabled] = useState(false);
+
+	const disableSelect = () => {
+		setSelectDisabled(true);
+	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		console.log(selectState);
-		// console.log(selectState.winner, 'wins');
 		console.log(selectState.winner);
 
 		for (let i = 0; i < playersData.length; i++) {
-			// if name of winner matches player at index, add 1 to that player's number of wins
 			if (selectState.winner === playersData[i].name) {
 				playersData[i].wins = playersData[i].wins + 1;
-				// if name of loser matches player at index, add 1 to that player's number of losses
 				axios
 					.put(API_URL + `${playersData[i]._id}`, playersData[i])
 					.then((res) => {
@@ -88,33 +88,6 @@ function Match(props) {
 		setSelectState({ ...selectState, [event.target.id]: event.target.value });
 		console.log(event.target.value);
 	};
-
-	// console.log(`playersData[0].${_id}`);
-	// Working code without Axios!
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		try {
-	// 			const response = await fetch(API_URL);
-	// 			const jsonData = await response.json().then((data) => {
-	// 				// console.log(data, 'data');
-	// 				setPlayersData(data);
-	// 				// console.log(data, 'inside use effect');
-	// 				// console.log(data);
-	// 				const optionsArr = data.map((option) => {
-	// 					return <option value={option.name}> {option.name} </option>;
-	// 				});
-	// 				setOptions(optionsArr);
-	// 				// console.log(options);
-	// 			});
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	};
-	// 	fetchData();
-	// }, []);
-
-	// Axios attempt for useEffect
 
 	return (
 		<div>
