@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './Match.css';
 import API_URL from '../../apiConfig';
-import axios from 'axios';
+// import axios from 'axios';
 
 // put states for players
 let players = [
@@ -102,12 +103,12 @@ function Match(props) {
 					// console.log(data, 'data');
 					setPlayersData(data);
 					// console.log(data, 'inside use effect');
-					console.log(data);
-					const optionsArr = data.map((potato) => {
-						return <option value={potato.name}> {potato.name} </option>;
+					// console.log(data);
+					const optionsArr = data.map((option) => {
+						return <option value={option.name}> {option.name} </option>;
 					});
 					setOptions(optionsArr);
-					console.log(options);
+					// console.log(options);
 				});
 			} catch (error) {
 				console.log(error);
@@ -127,7 +128,7 @@ function Match(props) {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit}>
+			{/* <form onSubmit={handleSubmit}>
 				<h3>
 					<label htmlFor="winner"> Winner:</label>
 					<select
@@ -155,27 +156,40 @@ function Match(props) {
 				<button type="submit" onClick={handleSubmit}>
 					Submit
 				</button>
-			</form>
-			{/* Copy */}
+			</form> */}
 
 			<form onSubmit={handleSubmit}>
 				<h3>
 					<label htmlFor="winner"> Winner:</label>
-					return (
-					<select className="newPlayers" id="newWinner" onChange={handleChange}>
-						<option value="select"> {playersData.name}</option>
+
+					<select
+						className="selectForm"
+						name="players"
+						id="winner"
+						onChange={handleChange}
+						value={selectState.winner}>
+						<option value="select">Select</option>
 						{options}
-						<option value={playersData.name}>{playersData.name}</option>
 					</select>
-					);
+				</h3>
+				<h3>
+					<label htmlFor="winner"> Loser:</label>
+
+					<select
+						className="selectForm"
+						name="players"
+						id="loser"
+						onChange={handleChange}
+						value={selectState.loser}>
+						<option value="select">Select</option>
+						{options}
+					</select>
 				</h3>
 
 				<button type="submit" onClick={handleSubmit}>
 					Submit
 				</button>
 			</form>
-
-			{/* Copy ends */}
 		</div>
 	);
 }
