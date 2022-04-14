@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Match.css';
 import API_URL from '../../apiConfig';
+import axios from 'axios';
 // import axios from 'axios';
 
 // put states for players
@@ -32,12 +33,25 @@ function Match(props) {
 		losses: 0,
 	};
 
+	const listPlayers = async () => {
+		try {
+			const response = await axios
+				.get(API_URL)
+				.then((data) => setPlayersList(data));
+		} catch (error) {
+			console.log(error);
+		}
+		console.log(playersList);
+	};
+	listPlayers();
+
 	// const [playerOneState, setPlayerOneState] = useState(initialPlayerState);
 	// const [playerTwoState, setPlayerTwoState] = useState(initialPlayerState);
 
 	const [selectState, setSelectState] = useState(initialState);
 	// playersData for API data
 	const [playersData, setPlayersData] = useState([]);
+	const [playersList, setPlayersList] = useState([]);
 	const [options, setOptions] = useState([]);
 
 	// const [wins, setWins] = useState(0);
@@ -54,10 +68,15 @@ function Match(props) {
 			// if name of winner matches player at index, add 1 to that player's number of wins
 			if (selectState.winner === players[i].name) {
 				players[i].wins = players[i].wins + 1;
+				// if name of loser matches player at index, add 1 to that player's number of losses
 			} else if (selectState.loser === players[i].name) {
 				players[i].losses = players[i].losses + 1;
 			}
-			// if name of loser matches player at index, add 1 to that player's number of losses
+			axios.put(API_URL).then((res) => {
+				if (res.status === 200) {
+					listPlayers();
+				}
+			});
 		}
 
 		setSelectState(initialState);
@@ -117,47 +136,8 @@ function Match(props) {
 		fetchData();
 	}, []);
 
-	// console.log(playersData, 'log after fetch request');
-
-	// let testMap = playersData.map();
-	// console.log(testMap);
-
-	// for (let i = 0; i < playersData.length; i++) {
-	// 	console.log(playersData[i], 'for loop');
-	// }
-
 	return (
 		<div>
-			{/* <form onSubmit={handleSubmit}>
-				<h3>
-					<label htmlFor="winner"> Winner:</label>
-					<select
-						name="players"
-						id="winner"
-						onChange={handleChange}
-						value={selectState.winner}>
-						<option value="select"> Select Player </option>
-						<option value={players[0].name}> {players[0].name} </option>
-						<option value={players[1].name}> {players[1].name} </option>
-					</select>
-				</h3>
-				<h3>
-					<label htmlFor="loser"> Loser:</label>
-					<select
-						name="players"
-						id="loser"
-						onChange={handleChange}
-						value={selectState.loser}>
-						<option value="select"> Select Player </option>
-						<option value={players[0].name}> {players[0].name} </option>
-						<option value={players[1].name}> {players[1].name} </option>
-					</select>
-				</h3>
-				<button type="submit" onClick={handleSubmit}>
-					Submit
-				</button>
-			</form> */}
-
 			<form onSubmit={handleSubmit}>
 				<h3>
 					<label htmlFor="winner"> Winner:</label>
