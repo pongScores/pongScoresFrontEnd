@@ -3,6 +3,7 @@ import React from 'react';
 import './Players.css';
 import { Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
+import { Table } from '@mui/material';
 
 function Players(props) {
 	return (

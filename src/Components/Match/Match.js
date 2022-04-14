@@ -32,6 +32,7 @@ function Match(props) {
 		wins: 0,
 		losses: 0,
 	};
+	const [playersList, setPlayersList] = useState([]);
 
 	const listPlayers = async () => {
 		try {
@@ -41,7 +42,7 @@ function Match(props) {
 		} catch (error) {
 			console.log(error);
 		}
-		console.log(playersList);
+		// console.log(playersList);
 	};
 	listPlayers();
 
@@ -51,7 +52,6 @@ function Match(props) {
 	const [selectState, setSelectState] = useState(initialState);
 	// playersData for API data
 	const [playersData, setPlayersData] = useState([]);
-	const [playersList, setPlayersList] = useState([]);
 	const [options, setOptions] = useState([]);
 
 	// const [wins, setWins] = useState(0);
