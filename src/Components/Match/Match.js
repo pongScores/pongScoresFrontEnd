@@ -37,6 +37,7 @@ function Match(props) {
 	const [selectState, setSelectState] = useState(initialState);
 	// playersData for API data
 	const [playersData, setPlayersData] = useState([]);
+	const [options, setOptions] = useState([]);
 
 	// const [wins, setWins] = useState(0);
 	// const [losses, setLosses] = useState(0);
@@ -97,8 +98,16 @@ function Match(props) {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(API_URL);
-				const json = await response.json().then((data) => {
+				const jsonData = await response.json().then((data) => {
+					// console.log(data, 'data');
 					setPlayersData(data);
+					// console.log(data, 'inside use effect');
+					console.log(data);
+					const optionsArr = data.map((potato) => {
+						return <option value={potato.name}> {potato.name} </option>;
+					});
+					setOptions(optionsArr);
+					console.log(options);
 				});
 			} catch (error) {
 				console.log(error);
@@ -107,7 +116,15 @@ function Match(props) {
 		fetchData();
 	}, []);
 
-	console.log(playersData);
+	// console.log(playersData, 'log after fetch request');
+
+	// let testMap = playersData.map();
+	// console.log(testMap);
+
+	// for (let i = 0; i < playersData.length; i++) {
+	// 	console.log(playersData[i], 'for loop');
+	// }
+
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
@@ -139,6 +156,26 @@ function Match(props) {
 					Submit
 				</button>
 			</form>
+			{/* Copy */}
+
+			<form onSubmit={handleSubmit}>
+				<h3>
+					<label htmlFor="winner"> Winner:</label>
+					return (
+					<select className="newPlayers" id="newWinner" onChange={handleChange}>
+						<option value="select"> {playersData.name}</option>
+						{options}
+						<option value={playersData.name}>{playersData.name}</option>
+					</select>
+					);
+				</h3>
+
+				<button type="submit" onClick={handleSubmit}>
+					Submit
+				</button>
+			</form>
+
+			{/* Copy ends */}
 		</div>
 	);
 }
