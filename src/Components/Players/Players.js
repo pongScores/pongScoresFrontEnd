@@ -4,6 +4,7 @@ import './Players.css';
 import { Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import { Table } from '@mui/material';
+import axios from 'axios';
 
 function Players(props) {
 	return (
@@ -11,11 +12,11 @@ function Players(props) {
 			{props.playersData.map((element) => {
 				return (
 					<div element={element} key={element._id} className="playersLinksBody">
-						{/* <Link to={'/players/' + element.name}>{element.name} </Link> */}
-						<p>
+						<Link to={'/players/' + element.name}>{element.name} </Link>
+						{/* <p>
 							{element.name} {element.rating} Wins: {element.wins} Losses:
 							{element.losses}
-						</p>
+						</p> */}
 					</div>
 				);
 			})}

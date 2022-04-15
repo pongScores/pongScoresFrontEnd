@@ -39,6 +39,7 @@ function App() {
 						/>
 					}
 				/>
+				<Route path="/players/id" element={<Players />} />
 				<Route path="/match" element={<Match />} />
 				<Route path="/editPlayers" element={<AddPlayers />} />
 			</Routes>
