@@ -3,7 +3,7 @@ import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import Login from './Components/Login/Login';
 import Players from './Components/Players/Players';
-import EditPlayers from './Components/EditPlayers/EditPlayers';
+import AddPlayers from './Components/EditPlayers/AddPlayers';
 import Match from './Components/Match/Match';
 import API_URL from './apiConfig';
 import Nav from './Components/Nav/Nav';
@@ -40,7 +40,7 @@ function App() {
 					}
 				/>
 				<Route path="/match" element={<Match />} />
-				<Route path="/editPlayers" element={<EditPlayers />} />
+				<Route path="/editPlayers" element={<AddPlayers />} />
 			</Routes>
 		</div>
 	);
