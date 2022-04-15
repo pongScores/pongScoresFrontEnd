@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Match.css';
 import API_URL from '../../apiConfig';
 import axios from 'axios';
+import { ExitToAppTwoTone } from '@mui/icons-material';
 
 function Match(props) {
 	useEffect(() => {
@@ -59,7 +60,10 @@ function Match(props) {
 		console.log(selectState.winner);
 
 		for (let i = 0; i < playersData.length; i++) {
-			if (selectState.winner === playersData[i].name) {
+			if (selectState.winner === selectState.loser) {
+				alert('Select different winners and losers!');
+				break;
+			} else if (selectState.winner === playersData[i].name) {
 				playersData[i].wins = playersData[i].wins + 1;
 				axios
 					.put(API_URL + `${playersData[i]._id}`, playersData[i])
