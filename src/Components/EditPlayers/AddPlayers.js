@@ -13,6 +13,11 @@ function AddPlayers(props) {
 		losses: '',
 	});
 
+	const [initialPlayerState, setInitialPlayerState] = useState({
+		name: '',
+		wins: '',
+		losses: '',
+	});
 	const handleChange = (event) => {
 		setPlayer({ ...player, [event.target.id]: event.target.value });
 	};
@@ -24,12 +29,11 @@ function AddPlayers(props) {
 			.post('https://fierce-shelf-71912.herokuapp.com/players', player)
 			.then((res) => {
 				if (res.status === 200) {
-					navigate('/players');
-				} else {
-					alert('something went wrong!');
+					navigate('/');
 				}
 			})
 			.catch(console.error);
+		setPlayer(initialPlayerState);
 	};
 
 	return (

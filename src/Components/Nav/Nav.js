@@ -15,7 +15,7 @@ function Nav(props) {
 				<h2 className="match">Record Match</h2>
 			</Link>
 			<Link to="/editPlayers">
-				<h2>Edit Players</h2>
+				<h2>Add Players</h2>
 			</Link>
 		</header>
 	);
