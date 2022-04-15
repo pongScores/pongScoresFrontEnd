@@ -3,8 +3,10 @@ import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import Login from './Components/Login/Login';
 import Players from './Components/Players/Players';
+import EditPlayers from './Components/EditPlayers/EditPlayers';
 import Match from './Components/Match/Match';
 import API_URL from './apiConfig';
+import Nav from './Components/Nav/Nav';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -24,19 +26,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<header className="app-header">
-				<Link to="/">
-					<h1 className="homeButton">Home</h1>
-				</Link>
-				<Link to="/players">
-					<h1 className="players">Players</h1>
-				</Link>
-				<Link to="/match">
-					<h2 className="match">Record Match</h2>
-				</Link>
-			</header>
+			<Nav />
 
-			{/* Routes - Do I need a div? */}
 			<Routes>
 				<Route path="/" element={<Homepage />} />
 				<Route
@@ -49,6 +40,7 @@ function App() {
 					}
 				/>
 				<Route path="/match" element={<Match />} />
+				<Route path="/editPlayers" element={<EditPlayers />} />
 			</Routes>
 		</div>
 	);
