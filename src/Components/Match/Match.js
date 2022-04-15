@@ -49,12 +49,13 @@ function Match(props) {
 	const [playersData, setPlayersData] = useState([]);
 	const [options, setOptions] = useState([]);
 	const [selectDisabled, setSelectDisabled] = useState(false);
-	const [showResults, setShowResults] = useState(true);
+	const [showResults, setShowResults] = useState(false);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		console.log(selectState);
 		console.log(selectState.winner);
+		console.log(playersData);
 
 		for (let i = 0; i < playersData.length; i++) {
 			if (selectState.winner === selectState.loser) {
@@ -79,9 +80,10 @@ function Match(props) {
 						}
 					});
 			}
+			return <p>{selectState.winner}</p>;
 		}
-
 		setSelectState(initialState);
+		toggleResults(true);
 	};
 
 	const toggleResults = () => {
@@ -90,6 +92,7 @@ function Match(props) {
 	};
 
 	const handleChange = (event) => {
+		setShowResults(false);
 		console.log(event.target.id);
 		setSelectState({ ...selectState, [event.target.id]: event.target.value });
 		console.log(event.target.value);
@@ -97,42 +100,42 @@ function Match(props) {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit}>
-				<h3>
-					<label htmlFor="winner"> Winner:</label>
+			<div>
+				<form onSubmit={handleSubmit}>
+					<h3>
+						<label htmlFor="winner"> Winner:</label>
 
-					<select
-						className="selectForm"
-						name="players"
-						id="winner"
-						onChange={handleChange}
-						value={selectState.winner}>
-						<option value="select">Select</option>
-						{options}
-					</select>
-				</h3>
-				<h3>
-					<label htmlFor="winner"> Loser:</label>
+						<select
+							className="selectForm"
+							name="players"
+							id="winner"
+							onChange={handleChange}
+							value={selectState.winner}>
+							<option value="select">Select</option>
+							{options}
+						</select>
+					</h3>
+					<h3>
+						<label htmlFor="winner"> Loser:</label>
 
-					<select
-						className="selectForm"
-						name="players"
-						id="loser"
-						onChange={handleChange}
-						value={selectState.loser}>
-						<option value="select">Select</option>
-						{options}
-					</select>
-				</h3>
+						<select
+							className="selectForm"
+							name="players"
+							id="loser"
+							onChange={handleChange}
+							value={selectState.loser}>
+							<option value="select">Select</option>
+							{options}
+						</select>
+					</h3>
 
-				<button type="submit" onClick={handleSubmit}>
-					Submit
-				</button>
-			</form>
-			<>
-				{showResults ? <p>show/hide p</p> : <></>}
-				<button onClick={toggleResults}>Toggle</button>
-			</>
+					<button type="submit" onClick={handleSubmit} onClick={toggleResults}>
+						Submit
+					</button>
+				</form>
+			</div>
+
+			{showResults ? <p>{selectState.winner} won!</p> : <></>}
 		</div>
 	);
 }
