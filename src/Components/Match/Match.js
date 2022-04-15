@@ -49,10 +49,7 @@ function Match(props) {
 	const [playersData, setPlayersData] = useState([]);
 	const [options, setOptions] = useState([]);
 	const [selectDisabled, setSelectDisabled] = useState(false);
-
-	const disableSelect = () => {
-		setSelectDisabled(true);
-	};
+	const [showResults, setShowResults] = useState(true);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -85,6 +82,11 @@ function Match(props) {
 		}
 
 		setSelectState(initialState);
+	};
+
+	const toggleResults = () => {
+		console.log('Am I working?');
+		setShowResults(!showResults);
 	};
 
 	const handleChange = (event) => {
@@ -127,6 +129,10 @@ function Match(props) {
 					Submit
 				</button>
 			</form>
+			<>
+				{showResults ? <p>show/hide p</p> : <></>}
+				<button onClick={toggleResults}>Toggle</button>
+			</>
 		</div>
 	);
 }
