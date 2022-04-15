@@ -11,7 +11,6 @@ function AddPlayers(props) {
 		name: '',
 		wins: '',
 		losses: '',
-		rating: '',
 	});
 
 	const handleChange = (event) => {
@@ -25,9 +24,9 @@ function AddPlayers(props) {
 			.post('https://fierce-shelf-71912.herokuapp.com/players', player)
 			.then((res) => {
 				if (res.status === 200) {
-					navigate('/');
+					navigate('/players');
 				} else {
-					console.log('something went wrong!');
+					alert('something went wrong!');
 				}
 			})
 			.catch(console.error);
@@ -38,10 +37,11 @@ function AddPlayers(props) {
 			<label htmlFor="player">Name:</label>
 			<input
 				onChange={handleChange}
-				id="player"
+				id="name"
 				value={player.player}
 				placeholder="Loki"
-				key={player.name}
+				key={player._id}
+				required
 			/>
 			<label htmlFor="wins">Wins: </label>
 			<input
@@ -49,7 +49,7 @@ function AddPlayers(props) {
 				id="wins"
 				value={player.wins}
 				placeholder="0"
-				key={player.wins}
+				key={player._id}
 			/>
 			<label htmlFor="losses">Losses: </label>
 			<input
@@ -57,7 +57,7 @@ function AddPlayers(props) {
 				id="losses"
 				value={player.losses}
 				placeholder="0"
-				key={player.losses}
+				key={player._id}
 			/>
 			<button type="submit">Add Player</button>
 		</form>

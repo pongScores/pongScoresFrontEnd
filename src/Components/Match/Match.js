@@ -11,7 +11,7 @@ function Match(props) {
 				setPlayersData(data);
 				const optionsArr = data.map((option) => {
 					return (
-						<option key={option.name} value={option.name}>
+						<option key={option._id} value={option.name}>
 							{option.name}
 						</option>
 					);
