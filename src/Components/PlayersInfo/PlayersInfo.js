@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../../apiConfig';
 import Players from '../Players/Players';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 function PlayersInfo() {
+	const navigate = useNavigate();
+
 	const [playersData, setPlayersData] = useState([]);
+	const [formData, setFormData] = useState(null);
+	const [modal, setModal] = useState(false);
 	const { name } = useParams();
+	// const { _id } = useParams();
 
 	useEffect(() => {
 		axios(API_URL)
@@ -15,23 +20,26 @@ function PlayersInfo() {
 					return element.name === name;
 				});
 				setPlayersData(item);
+				setFormData(item);
 			})
 			.catch(console.error);
 	}, []);
-	// console.log(playersData);
 
-	// useEffect(() => {
-	// 	fetch(API_URL)
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			// console.log(data);
-	// 			const item = data.find((element) => {
-	// 				return element.name === name;
-	// 			});
-	// 			setPlayersData(data);
-	// 		});
-	// }, []);
-	// console.log(playersData);
+	const handleDelete = async () => {
+		const confirm = window.confirm(
+			'Once you delete a player, this cannot be undone. Continue?'
+		);
+		if (confirm) {
+			try {
+				const res = await axios.delete(API_URL);
+				if (res.status === 200) {
+					navigate('/');
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
 
 	return (
 		<div>
