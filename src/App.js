@@ -3,6 +3,7 @@ import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import Login from './Components/Login/Login';
 import Players from './Components/Players/Players';
+import PlayersInfo from './Components/PlayersInfo/PlayersInfo';
 import AddPlayers from './Components/EditPlayers/AddPlayers';
 import Match from './Components/Match/Match';
 import API_URL from './apiConfig';
@@ -39,9 +40,17 @@ function App() {
 						/>
 					}
 				/>
-				<Route path="/players/id" element={<Players />} />
+				<Route
+					path="/players/:name"
+					element={
+						<PlayersInfo
+							playersData={playersData}
+							setPlayersData={setPlayersData}
+						/>
+					}
+				/>
 				<Route path="/match" element={<Match />} />
-				<Route path="/editPlayers" element={<AddPlayers />} />
+				<Route path="/addPlayers" element={<AddPlayers />} />
 			</Routes>
 		</div>
 	);
