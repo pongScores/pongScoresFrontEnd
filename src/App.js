@@ -10,6 +10,7 @@ import API_URL from './apiConfig';
 import Nav from './Components/Nav/Nav';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 function App() {
 	const [playersData, setPlayersData] = useState([]);
