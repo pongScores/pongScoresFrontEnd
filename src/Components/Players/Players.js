@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import './Players.css';
 import { Link, useParams } from 'react-router-dom';
 import API_URL from '../../apiConfig';
-import axios from 'axios';
+import { createTheme, ThemeProvider } from '@mui/system/';
+
 import {
 	Table,
 	TableBody,
@@ -12,11 +13,18 @@ import {
 	TableHead,
 	TableRow,
 	Paper,
+	Avatar,
+	Grid,
+	Typography,
+	TablePagination,
+	TableFooter,
 } from '@mui/material';
+
+import { palette } from '@mui/system';
+import { lightBlue } from '@mui/material/colors';
 
 function Players(props) {
 	const [playersData, setPlayersData] = useState([]);
-	// const { _id } = useParams();
 
 	useEffect(() => {
 		fetch(API_URL)
@@ -34,7 +42,11 @@ function Players(props) {
 			<Link to="/AddPlayers">
 				<h2>Add Players</h2>
 			</Link>
-			<TableContainer sx={{ maxWidth: '500px' }} component={Paper}>
+
+			<TableContainer
+				className="tableContainer"
+				sx={{ maxWidth: '500px' }}
+				component={Paper}>
 				<Table aria-label="simple table">
 					<TableHead>
 						<TableRow>
@@ -44,7 +56,13 @@ function Players(props) {
 						</TableRow>
 					</TableHead>
 
-					<TableBody>
+					<TableBody
+						sx={{
+							bgcolor: lightBlue[50],
+							color: 'text.primary',
+							p: 2,
+							justifyContent: 'center',
+						}}>
 						{props.playersData.map((element) => {
 							// return (
 							// 	<div
