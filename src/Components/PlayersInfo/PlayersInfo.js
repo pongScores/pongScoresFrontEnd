@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../../apiConfig';
-import Players from '../Players/Players';
+// import Players from '../Players/Players';
 import { useNavigate, useParams } from 'react-router';
 
 function PlayersInfo() {
 	const navigate = useNavigate();
 
-	const [playersData, setPlayersData] = useState([]);
+	const [playersData, setPlayersData] = useState({ name: '' });
 	const [modal, setModal] = useState(false);
 	const { name } = useParams();
 
@@ -21,6 +21,7 @@ function PlayersInfo() {
 
 	useEffect(() => {
 		const url = 'https://fierce-shelf-71912.herokuapp.com/players/' + name;
+		// console.log(name);
 
 		fetch(url)
 			.then((res) => res.json())
@@ -28,10 +29,11 @@ function PlayersInfo() {
 				setPlayersData(data);
 			});
 	}, [name]);
-	console.log(playersData);
+	// console.log(playersData);
 
 	const handleChange = (event) => {
 		setPlayersData({ ...playersData, [event.target.id]: event.target.value });
+		console.log(event.target.id);
 		console.log(event.target.value);
 	};
 
@@ -46,14 +48,15 @@ function PlayersInfo() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const res = await axios.put(`API_URL ${name}`, playersData);
+			const res = await axios.put(API_URL + `${name}`, playersData);
 
-			if (res.status === 200) {
+			if (res.status === 201) {
 				setModal(false);
 			}
 		} catch (error) {
 			console.log(error);
 		}
+		navigate('/');
 	};
 
 	const handleDelete = async () => {
@@ -62,8 +65,8 @@ function PlayersInfo() {
 		);
 		if (confirm) {
 			try {
-				const res = await axios.delete(API_URL`${name}`);
-				if (res.status === 204) {
+				const res = await axios.delete(API_URL + `${name}`);
+				if (res.status === 201) {
 					navigate('/');
 				}
 			} catch (error) {
@@ -89,12 +92,12 @@ function PlayersInfo() {
 							type="text"
 							onChange={handleChange}
 							id="editName"
-							value={playersData.name}
+							// value={playersData.name}
+							defaultValue={playersData.name}
 						/>
 
 						<label htmlFor="editWins">Wins:</label>
 						<input
-							type="text"
 							onChange={handleChange}
 							id="editWins"
 							value={playersData.wins}
@@ -102,7 +105,6 @@ function PlayersInfo() {
 
 						<label htmlFor="editLosses">losses:</label>
 						<input
-							type="text"
 							onChange={handleChange}
 							id="editLosses"
 							value={playersData.losses}

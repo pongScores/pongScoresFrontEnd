@@ -27,7 +27,7 @@ function Players(props) {
 			{props.playersData.map((element) => {
 				return (
 					<div element={element} key={element._id} className="playersLinksBody">
-						<Link to={'/players/' + element.name}>{element.name} </Link>{' '}
+						<Link to={'/players/' + element._id}>{element.name} </Link>{' '}
 						{element.wins} - {element.losses}
 						{/* End of working map */}
 						{/* <p>
