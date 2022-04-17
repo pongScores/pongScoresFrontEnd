@@ -3,8 +3,16 @@ import React, { useState, useEffect } from 'react';
 import './Players.css';
 import { Link, useParams } from 'react-router-dom';
 import API_URL from '../../apiConfig';
-import { Table } from '@mui/material';
 import axios from 'axios';
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableContainer,
+	TableHead,
+	TableRow,
+	Paper,
+} from '@mui/material';
 
 function Players(props) {
 	const [playersData, setPlayersData] = useState([]);
@@ -22,22 +30,41 @@ function Players(props) {
 	}, []);
 
 	return (
-		<div className="players-list">
-			{/* Working Map */}
-			{props.playersData.map((element) => {
-				return (
-					<div element={element} key={element._id} className="playersLinksBody">
-						<Link to={'/players/' + element._id}>{element.name} </Link>{' '}
-						{element.wins} - {element.losses}
-						{/* End of working map */}
-						{/* <p>
-							{element.name} {element.rating} Wins: {element.wins} Losses:
-							{element.losses}
-						</p> */}
-					</div>
-				);
-			})}
-		</div>
+		<>
+			<Link to="/AddPlayers">
+				<h2>Add Players</h2>
+			</Link>
+			<TableContainer component={Paper}>
+				<Table aria-label="simple table">
+					<TableHead>
+						<TableRow>
+							<TableCell>Name:</TableCell>
+							<TableCell>Wins:</TableCell>
+							<TableCell>Losses:</TableCell>
+						</TableRow>
+					</TableHead>
+
+					<TableBody>
+						{props.playersData.map((element) => {
+							return (
+								<div
+									element={element}
+									key={element._id}
+									className="playersLinksBody">
+									<Link to={'/players/' + element._id}>{element.name} </Link>{' '}
+									{element.wins} - {element.losses}
+									{/* End of working map */}
+									{/* <p>
+								{element.name} {element.rating} Wins: {element.wins} Losses:
+								{element.losses}
+							</p> */}
+								</div>
+							);
+						})}
+					</TableBody>
+				</Table>
+			</TableContainer>
+		</>
 	);
 }
 

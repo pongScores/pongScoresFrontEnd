@@ -98,16 +98,18 @@ function PlayersInfo() {
 
 						<label htmlFor="editWins">Wins:</label>
 						<input
+							type="number"
 							onChange={handleChange}
 							id="editWins"
-							value={playersData.wins}
+							defaultValue={playersData.wins}
 						/>
 
 						<label htmlFor="editLosses">losses:</label>
 						<input
+							type="number"
 							onChange={handleChange}
 							id="editLosses"
-							value={playersData.losses}
+							defaultValue={playersData.losses}
 						/>
 
 						<button type="submit">Submit</button>

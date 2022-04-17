@@ -130,7 +130,13 @@ function Match(props) {
 							{options}
 						</select>
 					</h3>
-
+					{/* Why does this not work? */}
+					{/* <button
+						type="submit"
+						onClick={() => {
+							handleSubmit();
+							toggleResults();
+						}}> */}
 					<button type="submit" onClick={handleSubmit} onClick={toggleResults}>
 						Submit
 					</button>
