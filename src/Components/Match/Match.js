@@ -5,10 +5,6 @@ import axios from 'axios';
 import { ExitToAppTwoTone } from '@mui/icons-material';
 
 function Match(props) {
-
-
-
-	
 	useEffect(() => {
 		axios(API_URL)
 			.then(({ data }) => {
@@ -37,6 +33,8 @@ function Match(props) {
 		losses: 0,
 	};
 	const [playersList, setPlayersList] = useState([]);
+
+	// Get Request
 
 	const listPlayers = async () => {
 		try {

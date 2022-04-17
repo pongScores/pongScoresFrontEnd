@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddPlayers.css';
 import API_URL from '../../apiConfig';
 
 function AddPlayers(props) {
+	// const { _id } = useParams();
 	const navigate = useNavigate();
-
+	// Hooks
 	const [player, setPlayer] = useState({
 		name: '',
 		wins: '',
@@ -18,6 +19,7 @@ function AddPlayers(props) {
 		wins: '',
 		losses: '',
 	});
+
 	const handleChange = (event) => {
 		setPlayer({ ...player, [event.target.id]: event.target.value });
 	};
@@ -26,7 +28,7 @@ function AddPlayers(props) {
 		event.preventDefault();
 		console.log(player);
 		axios
-			.post('https://fierce-shelf-71912.herokuapp.com/players', player)
+			.post(API_URL, player)
 			.then((res) => {
 				if (res.status === 200) {
 					navigate('/');
@@ -37,34 +39,38 @@ function AddPlayers(props) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<label htmlFor="player">Name:</label>
-			<input
-				onChange={handleChange}
-				id="name"
-				value={player.player}
-				placeholder="Loki"
-				key={player._id}
-				required
-			/>
-			<label htmlFor="wins">Wins: </label>
-			<input
-				onChange={handleChange}
-				id="wins"
-				value={player.wins}
-				placeholder="0"
-				key={player._id}
-			/>
-			<label htmlFor="losses">Losses: </label>
-			<input
-				onChange={handleChange}
-				id="losses"
-				value={player.losses}
-				placeholder="0"
-				key={player._id}
-			/>
-			<button type="submit">Add Player</button>
-		</form>
+		<div>
+			<form onSubmit={handleSubmit}>
+				<label htmlFor="player">Name:</label>
+				<input
+					onChange={handleChange}
+					id="name"
+					value={player.player}
+					placeholder="Loki"
+					key={player._id}
+					required
+				/>
+				<label htmlFor="wins">Wins: </label>
+				<input
+					onChange={handleChange}
+					id="wins"
+					value={player.wins}
+					placeholder="0"
+					key={player._id}
+				/>
+				<label htmlFor="losses">Losses: </label>
+				<input
+					onChange={handleChange}
+					id="losses"
+					value={player.losses}
+					placeholder="0"
+					key={player._id}
+				/>
+				<button type="submit">Add Player</button>
+			</form>
+
+			<section className="playersDetails"></section>
+		</div>
 	);
 }
 
