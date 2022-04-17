@@ -57,7 +57,7 @@ function Players(props) {
 							// );
 
 							return (
-								<div
+								<TableRow
 									element={element}
 									key={element._id}
 									className="playersLinksBody">
@@ -65,8 +65,10 @@ function Players(props) {
 										<Link to={'/players/' + element._id}>{element.name} </Link>
 									</TableCell>
 
-									<TableCell>{element.wins} </TableCell>- {element.losses}
-								</div>
+									<TableCell>{element.wins} </TableCell>
+
+									<TableCell>{element.losses}</TableCell>
+								</TableRow>
 							);
 						})}
 					</TableBody>
