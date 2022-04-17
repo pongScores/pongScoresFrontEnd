@@ -48,7 +48,13 @@ function PlayersInfo() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const res = await axios.put(API_URL + `${name}`, playersData);
+			// const res = await axios.put(API_URL + `${name}`, playersData);
+			const res = await axios.put(
+				'http://localhost:4000/players/' + `${name}`,
+				playersData
+			);
+			console.log(playersData);
+			console.log(API_URL + `${name}`);
 
 			if (res.status === 201) {
 				setModal(false);
@@ -87,28 +93,28 @@ function PlayersInfo() {
 				<div className="modal">
 					<h2>Edit Name</h2>
 					<form onSubmit={handleSubmit}>
-						<label htmlFor="editName">Name:</label>
+						<label htmlFor="name">Name:</label>
 						<input
 							type="text"
 							onChange={handleChange}
-							id="editName"
+							id="name"
 							// value={playersData.name}
 							defaultValue={playersData.name}
 						/>
 
-						<label htmlFor="editWins">Wins:</label>
+						<label htmlFor="wins">Wins:</label>
 						<input
 							type="number"
 							onChange={handleChange}
-							id="editWins"
+							id="wins"
 							defaultValue={playersData.wins}
 						/>
 
-						<label htmlFor="editLosses">losses:</label>
+						<label htmlFor="losses">losses:</label>
 						<input
 							type="number"
 							onChange={handleChange}
-							id="editLosses"
+							id="losses"
 							defaultValue={playersData.losses}
 						/>
 
