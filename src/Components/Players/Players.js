@@ -34,7 +34,7 @@ function Players(props) {
 			<Link to="/AddPlayers">
 				<h2>Add Players</h2>
 			</Link>
-			<TableContainer component={Paper}>
+			<TableContainer sx={{ maxWidth: '500px' }} component={Paper}>
 				<Table aria-label="simple table">
 					<TableHead>
 						<TableRow>
