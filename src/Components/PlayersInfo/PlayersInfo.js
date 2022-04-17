@@ -48,11 +48,11 @@ function PlayersInfo() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			// const res = await axios.put(API_URL + `${name}`, playersData);
-			const res = await axios.put(
-				'http://localhost:4000/players/' + `${name}`,
-				playersData
-			);
+			const res = await axios.put(API_URL + `${name}`, playersData);
+			// const res = await axios.put(
+			// 	'http://localhost:4000/players/' + `${name}`,
+			// 	playersData
+			// );
 			console.log(playersData);
 			console.log(API_URL + `${name}`);
 

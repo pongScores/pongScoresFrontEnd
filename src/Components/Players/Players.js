@@ -46,18 +46,26 @@ function Players(props) {
 
 					<TableBody>
 						{props.playersData.map((element) => {
+							// return (
+							// 	<div
+							// 		element={element}
+							// 		key={element._id}
+							// 		className="playersLinksBody">
+							// 		<Link to={'/players/' + element._id}>{element.name} </Link>{' '}
+							// 		{element.wins} - {element.losses}
+							// 	</div>
+							// );
+
 							return (
 								<div
 									element={element}
 									key={element._id}
 									className="playersLinksBody">
-									<Link to={'/players/' + element._id}>{element.name} </Link>{' '}
-									{element.wins} - {element.losses}
-									{/* End of working map */}
-									{/* <p>
-								{element.name} {element.rating} Wins: {element.wins} Losses:
-								{element.losses}
-							</p> */}
+									<TableCell>
+										<Link to={'/players/' + element._id}>{element.name} </Link>
+									</TableCell>
+
+									<TableCell>{element.wins} </TableCell>- {element.losses}
 								</div>
 							);
 						})}
