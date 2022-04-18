@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
+import { lime } from '@mui/material/colors';
+
 import {
 	AppBar,
 	Toolbar,
@@ -13,7 +15,10 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 function Nav(props) {
 	return (
-		<AppBar position="static" color="transparent">
+		<AppBar
+			position="static"
+			color="transparent"
+			style={{ background: '#f0f4c3' }}>
 			<Toolbar>
 				<EmojiEventsIcon size="large" />
 				<Link to="/">

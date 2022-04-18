@@ -1,3 +1,18 @@
 .tableContainer {
     margin: 0 auto; 
+    margin-top: 2%;
+}
+
+.addPlayersButton {
+    size: 10em; 
+}
+
+.playerContainer {
+    display: flex;
+    text-align: center; 
+}
+
+.addPlayersLinkContainer {
+    margin-top: 2%; 
+    
 }

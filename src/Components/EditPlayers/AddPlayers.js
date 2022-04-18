@@ -3,7 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddPlayers.css';
 import API_URL from '../../apiConfig';
-import { Button, IconButton, Stack, TextField } from '@mui/material';
+import {
+	Button,
+	IconButton,
+	Stack,
+	TextField,
+	Typography,
+} from '@mui/material';
 
 function AddPlayers(props) {
 	// const { _id } = useParams();
@@ -40,7 +46,10 @@ function AddPlayers(props) {
 	};
 
 	return (
-		<div>
+		<div className="addPlayersContainer">
+			<Typography variant="h5" color="secondary" align="left">
+				Add Players Page
+			</Typography>
 			<form className="addPlayersform" onSubmit={handleSubmit}>
 				<Stack direction="row" spacing={2}>
 					<TextField

@@ -1,0 +1,9 @@
+.modal {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.editbuttonsContainer{
+    display: inline-flex;
+    gap: 4%;
+}

@@ -3,8 +3,13 @@ import React, { useState, useEffect } from 'react';
 import './Players.css';
 import { Link, useParams } from 'react-router-dom';
 import API_URL from '../../apiConfig';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import { shadows } from '@mui/system';
+import { lightBlue } from '@mui/material/colors';
 
 import {
+	// Button,
+	// IconButton,
 	Table,
 	TableBody,
 	TableCell,
@@ -12,14 +17,12 @@ import {
 	TableHead,
 	TableRow,
 	Paper,
-	Avatar,
-	Grid,
+	// Avatar,
+	// Grid,
 	Typography,
-	TablePagination,
-	TableFooter,
+	// TablePagination,
+	// TableFooter,
 } from '@mui/material';
-
-import { lightBlue } from '@mui/material/colors';
 
 function Players(props) {
 	const [playersData, setPlayersData] = useState([]);
@@ -34,15 +37,20 @@ function Players(props) {
 	}, []);
 
 	return (
-		<>
-			<Link to="/AddPlayers">
-				<h2>Add Players</h2>
-			</Link>
+		<div className="playersBodyContainer">
+			<div className="addPlayersLinkContainer">
+				<Link to="/AddPlayers">
+					<Typography variant="h5" color="secondary">
+						Add Players <AddBoxIcon />
+					</Typography>
+				</Link>
+			</div>
 
 			<TableContainer
 				className="tableContainer"
-				sx={{ maxWidth: '500px' }}
-				component={Paper}>
+				sx={{ maxWidth: '500px', boxShadow: 3 }}
+				component={Paper}
+				align="center">
 				<Table aria-label="simple table">
 					<TableHead>
 						<TableRow>
@@ -56,7 +64,6 @@ function Players(props) {
 						sx={{
 							bgcolor: lightBlue[50],
 							color: 'text.primary',
-							p: 2,
 							justifyContent: 'center',
 						}}>
 						{props.playersData.map((element) => {
@@ -78,7 +85,7 @@ function Players(props) {
 					</TableBody>
 				</Table>
 			</TableContainer>
-		</>
+		</div>
 	);
 }
 
