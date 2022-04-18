@@ -75,7 +75,6 @@ function PlayersInfo() {
 		}
 	};
 
-
 	return (
 		<section>
 			{modal ? (
@@ -93,20 +92,22 @@ function PlayersInfo() {
 								defaultValue={playersData.name}
 							/>
 
-							<TextField
+							<input
 								type="number"
 								variant="outlined"
 								onChange={handleChange}
 								id="wins"
 								defaultValue={playersData.wins}
+								min="0"
 							/>
 
-							<TextField
+							<input
 								type="number"
 								variant="outlined"
 								onChange={handleChange}
 								id="losses"
 								defaultValue={playersData.losses}
+								min="0"
 							/>
 							<Button type="submit" variant="contained" color="warning">
 								Submit
@@ -132,7 +133,6 @@ function PlayersInfo() {
 
 					<Typography className="editbuttonsContainer">
 						<Button variant="contained" color="success" onClick={editModal}>
-							
 							<ModeEditIcon />
 						</Button>
 						<Button variant="contained" color="error" onClick={handleDelete}>

@@ -53,24 +53,27 @@ function AddPlayers(props) {
 						variant="outlined"
 						required
 					/>
-					<TextField
+					<input
 						label="Wins"
 						type="Number"
 						onChange={handleChange}
 						id="wins"
 						value={player.wins}
-						placeholder="0"
+						placeholder="wins"
+						min="0"
 						key={player._id}
 						variant="outlined"
 						required
 					/>
-					<TextField
+
+					<input
 						onChange={handleChange}
 						type="Number"
 						label="Losses"
 						id="losses"
 						value={player.losses}
-						placeholder="0"
+						min="0"
+						placeholder="losses"
 						required
 						key={player._id}
 					/>
