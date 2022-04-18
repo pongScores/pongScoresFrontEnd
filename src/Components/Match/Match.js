@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Match.css';
 import API_URL from '../../apiConfig';
 import axios from 'axios';
-import { Alert } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+
 function Match(props) {
 	useEffect(() => {
 		axios(API_URL)
@@ -99,36 +100,42 @@ function Match(props) {
 		<div>
 			<div>
 				<form onSubmit={handleSubmit}>
-					<h3>
-						<label htmlFor="winner"> Winner:</label>
+					<Typography variant="h6">
+						<h3>
+							<label htmlFor="winner"> Winner: </label>
 
-						<select
-							className="selectForm"
-							name="players"
-							id="winner"
-							onChange={handleChange}
-							value={selectState.winner}>
-							<option value="select">Select</option>
-							{options}
-						</select>
-					</h3>
-					<h3>
-						<label htmlFor="winner"> Loser:</label>
+							<select
+								className="selectForm"
+								name="players"
+								id="winner"
+								onChange={handleChange}
+								value={selectState.winner}>
+								<option value="select">Select</option>
+								{options}
+							</select>
+						</h3>
+						<h3>
+							<label htmlFor="winner"> Loser: </label>
 
-						<select
-							className="selectForm"
-							name="players"
-							id="loser"
-							onChange={handleChange}
-							value={selectState.loser}>
-							<option value="select">Select</option>
-							{options}
-						</select>
-					</h3>
+							<select
+								className="selectForm"
+								name="players"
+								id="loser"
+								onChange={handleChange}
+								value={selectState.loser}>
+								<option value="select">Select</option>
+								{options}
+							</select>
+						</h3>
+					</Typography>
 
-					<button type="submit" onClick={handleSubmit}>
+					<Button
+						type="submit"
+						variant="contained"
+						color="success"
+						onClick={handleSubmit}>
 						Submit
-					</button>
+					</Button>
 				</form>
 			</div>
 
