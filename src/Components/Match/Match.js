@@ -50,8 +50,6 @@ function Match(props) {
 	const [selectState, setSelectState] = useState(initialState);
 	const [playersData, setPlayersData] = useState([]);
 	const [options, setOptions] = useState([]);
-	const [selectDisabled, setSelectDisabled] = useState(false);
-	const [showResults, setShowResults] = useState(false);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -80,17 +78,11 @@ function Match(props) {
 					});
 			}
 		}
-		setShowResults(true);
+
 		setSelectState(initialState);
 	};
 
-	const toggleResults = () => {
-		console.log('Am I working?');
-		setShowResults(!showResults);
-	};
-
 	const handleChange = (event) => {
-		setShowResults(false);
 		console.log(event.target.id);
 		setSelectState({ ...selectState, [event.target.id]: event.target.value });
 		console.log(event.target.value);
@@ -138,8 +130,6 @@ function Match(props) {
 					</Button>
 				</form>
 			</div>
-
-			{showResults ? <p>Match Submitted!</p> : <></>}
 		</div>
 	);
 }
