@@ -3,7 +3,7 @@ import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import Players from './Components/Players/Players';
 import PlayersInfo from './Components/PlayersInfo/PlayersInfo';
-import AddPlayers from './Components/EditPlayers/AddPlayers';
+import AddPlayers from './Components/AddPlayers/AddPlayers';
 import Match from './Components/Match/Match';
 import API_URL from './apiConfig';
 import Nav from './Components/Nav/Nav';

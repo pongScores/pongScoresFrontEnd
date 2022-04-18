@@ -20,7 +20,7 @@ function Nav(props) {
 			color="transparent"
 			style={{ background: '#f0f4c3' }}>
 			<Toolbar>
-				<EmojiEventsIcon size="large" />
+				<EmojiEventsIcon size="large" color="warning" />
 				<Link to="/">
 					<Button color="inherit" size="large">
 						Home

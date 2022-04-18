@@ -32,7 +32,16 @@ https://fierce-shelf-71912.herokuapp.com/players
 
 ## Sample Component Hierarchy
 
+![Sample Component Hierarchy@2x](https://user-images.githubusercontent.com/90462032/163840026-efb069fb-63fc-4d89-a495-f40ba756cceb.png)
+
 ## Sample Wireframes
+
+![Score Keeping Screen@2x](https://user-images.githubusercontent.com/90462032/163840161-146c9a54-9f3d-457b-9d47-eaf3172edcbb.png)
+![RR Screen@2x](https://user-images.githubusercontent.com/90462032/163840162-3549a3f8-fc56-4d40-9c95-bc4b25944d94.png)
+![Home Screen@2x](https://user-images.githubusercontent.com/90462032/163840163-e78208ee-b67b-44cd-9940-8ea1db9f273c.png)
+![Hompage@2x](https://user-images.githubusercontent.com/90462032/163840164-6c80d7da-950e-4d33-b44f-95de699df724.png)
+![Edit Scores@2x](https://user-images.githubusercontent.com/90462032/163840158-7a70f727-9fb9-4ece-aaa0-3401fc8f03ed.png)
+![Director Page@2x](https://user-images.githubusercontent.com/90462032/163840151-89642cf3-cea8-4a95-9749-0b581e6dcd2b.png)
 
 ## User Stories
 
@@ -40,3 +49,8 @@ https://fierce-shelf-71912.herokuapp.com/players
 - As a coach or player, i want to see match record, so I can track my progress and performance.
 - As a user, I want an easy and self-updating match tracker, so I can accurate keep score and talk smack among my friends (in a friendly way).
 - As an enthusiast, I want to see how drastic rating changes are in short time frames, so I can be amazed at how fast kids improve. Or I can be impressed with how the persistence of players. (Future update)
+
+## Special Thanks
+
+Thank you to @codevolutionweb for the React-MUI-tutorial videos and repos
+https://github.com/gopinav/React-MUI-Tutorials
