@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import './Players.css';
 import { Link, useParams } from 'react-router-dom';
 import API_URL from '../../apiConfig';
-import { createTheme, ThemeProvider } from '@mui/system/';
 
 import {
 	Table,
@@ -20,7 +19,7 @@ import {
 	TableFooter,
 } from '@mui/material';
 
-import { palette } from '@mui/system';
+// import { palette } from '@mui/system';
 import { lightBlue } from '@mui/material/colors';
 
 function Players(props) {
@@ -64,16 +63,6 @@ function Players(props) {
 							justifyContent: 'center',
 						}}>
 						{props.playersData.map((element) => {
-							// return (
-							// 	<div
-							// 		element={element}
-							// 		key={element._id}
-							// 		className="playersLinksBody">
-							// 		<Link to={'/players/' + element._id}>{element.name} </Link>{' '}
-							// 		{element.wins} - {element.losses}
-							// 	</div>
-							// );
-
 							return (
 								<TableRow
 									element={element}

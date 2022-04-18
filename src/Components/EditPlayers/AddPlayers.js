@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddPlayers.css';
 import API_URL from '../../apiConfig';
+import { Button, IconButton } from '@mui/material';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 function AddPlayers(props) {
 	// const { _id } = useParams();
@@ -66,7 +68,13 @@ function AddPlayers(props) {
 					placeholder="0"
 					key={player._id}
 				/>
-				<button type="submit">Add Player</button>
+				<Button
+					variant="contained"
+					type="submit"
+					color="warning"
+					className="addPlayerButton">
+					Add
+				</Button>
 			</form>
 
 			<section className="playersDetails"></section>

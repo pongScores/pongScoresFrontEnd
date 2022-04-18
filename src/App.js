@@ -1,7 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
 import Homepage from './Components/Homepage/Homepage';
-import Login from './Components/Login/Login';
 import Players from './Components/Players/Players';
 import PlayersInfo from './Components/PlayersInfo/PlayersInfo';
 import AddPlayers from './Components/EditPlayers/AddPlayers';
@@ -10,7 +9,6 @@ import API_URL from './apiConfig';
 import Nav from './Components/Nav/Nav';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { useParams } from 'react-router';
 
 function App() {
 	const [playersData, setPlayersData] = useState([]);
@@ -20,8 +18,6 @@ function App() {
 			.then((res) => res.json())
 			.then((data) => {
 				setPlayersData(data);
-				// console.log(data);
-				// console.log(data[0]);
 			})
 			.catch(console.error);
 	}, []);

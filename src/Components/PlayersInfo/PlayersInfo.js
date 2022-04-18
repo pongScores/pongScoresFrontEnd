@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../../apiConfig';
-// import Players from '../Players/Players';
 import { useNavigate, useParams } from 'react-router';
 
 function PlayersInfo() {
@@ -11,17 +10,8 @@ function PlayersInfo() {
 	const [modal, setModal] = useState(false);
 	const { name } = useParams();
 
-	// useEffect(() => {
-	// 	fetch(API_URL)
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			setPlayersData(data);
-	// 		});
-	// }, []);
-
 	useEffect(() => {
 		const url = 'https://fierce-shelf-71912.herokuapp.com/players/' + name;
-		// console.log(name);
 
 		fetch(url)
 			.then((res) => res.json())
@@ -29,7 +19,6 @@ function PlayersInfo() {
 				setPlayersData(data);
 			});
 	}, [name]);
-	// console.log(playersData);
 
 	const handleChange = (event) => {
 		setPlayersData({ ...playersData, [event.target.id]: event.target.value });
@@ -49,10 +38,6 @@ function PlayersInfo() {
 		event.preventDefault();
 		try {
 			const res = await axios.put(API_URL + `${name}`, playersData);
-			// const res = await axios.put(
-			// 	'http://localhost:4000/players/' + `${name}`,
-			// 	playersData
-			// );
 			console.log(playersData);
 			console.log(API_URL + `${name}`);
 
