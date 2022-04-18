@@ -19,7 +19,6 @@ import {
 	TableFooter,
 } from '@mui/material';
 
-// import { palette } from '@mui/system';
 import { lightBlue } from '@mui/material/colors';
 
 function Players(props) {
@@ -29,9 +28,7 @@ function Players(props) {
 		fetch(API_URL)
 			.then((res) => res.json())
 			.then((data) => {
-				// console.log(data);
 				setPlayersData(data);
-				// console.log(data[0]);
 			})
 			.catch(console.error);
 	}, []);

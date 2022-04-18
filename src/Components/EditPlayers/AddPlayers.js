@@ -3,8 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddPlayers.css';
 import API_URL from '../../apiConfig';
-import { Button, IconButton } from '@mui/material';
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import { Button, IconButton, Stack, TextField } from '@mui/material';
 
 function AddPlayers(props) {
 	// const { _id } = useParams();
@@ -33,7 +32,7 @@ function AddPlayers(props) {
 			.post(API_URL, player)
 			.then((res) => {
 				if (res.status === 200) {
-					navigate('/');
+					navigate('/players');
 				}
 			})
 			.catch(console.error);
@@ -42,42 +41,48 @@ function AddPlayers(props) {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="player">Name:</label>
-				<input
-					onChange={handleChange}
-					id="name"
-					value={player.player}
-					placeholder="Loki"
-					key={player._id}
-					required
-				/>
-				<label htmlFor="wins">Wins: </label>
-				<input
-					onChange={handleChange}
-					id="wins"
-					value={player.wins}
-					placeholder="0"
-					key={player._id}
-				/>
-				<label htmlFor="losses">Losses: </label>
-				<input
-					onChange={handleChange}
-					id="losses"
-					value={player.losses}
-					placeholder="0"
-					key={player._id}
-				/>
-				<Button
-					variant="contained"
-					type="submit"
-					color="warning"
-					className="addPlayerButton">
-					Add
-				</Button>
+			<form className="addPlayersform" onSubmit={handleSubmit}>
+				<Stack direction="row" spacing={2}>
+					<TextField
+						label="Name"
+						onChange={handleChange}
+						id="name"
+						value={player.player}
+						key={player._id}
+						variant="outlined"
+						required
+					/>
+					<TextField
+						label="Wins"
+						type="Number"
+						onChange={handleChange}
+						id="wins"
+						value={player.wins}
+						placeholder="0"
+						key={player._id}
+						variant="outlined"
+						required
+					/>
+					<TextField
+						onChange={handleChange}
+						type="Number"
+						label="Losses"
+						id="losses"
+						value={player.losses}
+						placeholder="0"
+						required
+						key={player._id}
+					/>
+					<Button
+						variant="contained"
+						type="submit"
+						color="warning"
+						onSubmit={handleSubmit}
+						className="addPlayerButton">
+						Add
+					</Button>
+				</Stack>
 			</form>
-
-			<section className="playersDetails"></section>
 		</div>
 	);
 }

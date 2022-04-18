@@ -15,14 +15,13 @@ function Nav(props) {
 	return (
 		<AppBar position="static" color="transparent">
 			<Toolbar>
-				<IconButton size="large">
-					<EmojiEventsIcon />
-					<Link to="/">
-						<Button color="inherit" size="large">
-							Home
-						</Button>
-					</Link>
-				</IconButton>
+				<EmojiEventsIcon size="large" />
+				<Link to="/">
+					<Button color="inherit" size="large">
+						Home
+					</Button>
+				</Link>
+
 				<Typography
 					variant="h1"
 					component="div"

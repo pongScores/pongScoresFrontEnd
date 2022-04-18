@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Match.css';
 import API_URL from '../../apiConfig';
 import axios from 'axios';
-import { ExitToAppTwoTone } from '@mui/icons-material';
-
+import { Alert } from '@mui/material';
 function Match(props) {
 	useEffect(() => {
 		axios(API_URL)
@@ -22,13 +21,13 @@ function Match(props) {
 	}, []);
 
 	const initialState = {
+		name: '',
 		winner: '',
 		loser: '',
 	};
 
 	const initialPlayerState = {
 		name: '',
-		rating: 0,
 		wins: 0,
 		losses: 0,
 	};
@@ -55,9 +54,9 @@ function Match(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(selectState);
-		console.log(selectState.winner);
-		console.log(playersData);
+		// console.log(selectState);
+		// console.log(selectState.winner);
+		// console.log(playersData);
 
 		for (let i = 0; i < playersData.length; i++) {
 			if (selectState.winner === selectState.loser) {
@@ -82,10 +81,9 @@ function Match(props) {
 						}
 					});
 			}
-			return <p>{selectState.winner}</p>;
 		}
+		setShowResults(true);
 		setSelectState(initialState);
-		toggleResults(true);
 	};
 
 	const toggleResults = () => {
@@ -137,13 +135,13 @@ function Match(props) {
 							handleSubmit();
 							toggleResults();
 						}}> */}
-					<button type="submit" onClick={handleSubmit} onClick={toggleResults}>
+					<button type="submit" onClick={handleSubmit}>
 						Submit
 					</button>
 				</form>
 			</div>
 
-			{showResults ? <p>{selectState.winner} won!</p> : <></>}
+			{showResults ? <p>Match Submitted!</p> : <></>}
 		</div>
 	);
 }

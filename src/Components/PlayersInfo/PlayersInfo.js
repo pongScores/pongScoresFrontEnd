@@ -8,7 +8,18 @@ function PlayersInfo() {
 
 	const [playersData, setPlayersData] = useState({ name: '' });
 	const [modal, setModal] = useState(false);
+	const [playersList, setPlayersList] = useState([]);
 	const { name } = useParams();
+
+	const listPlayers = async () => {
+		try {
+			const response = await axios.get(API_URL);
+			setPlayersList(response.data);
+			console.log(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	useEffect(() => {
 		const url = 'https://fierce-shelf-71912.herokuapp.com/players/' + name;
@@ -47,6 +58,7 @@ function PlayersInfo() {
 		} catch (error) {
 			console.log(error);
 		}
+		listPlayers();
 		navigate('/');
 	};
 
@@ -117,7 +129,6 @@ function PlayersInfo() {
 						<p>Losses:{playersData.losses}</p>
 					</div>
 					<button onClick={editModal}>Edit</button>
-
 					<button onClick={handleDelete}> Delete</button>
 				</>
 			)}
