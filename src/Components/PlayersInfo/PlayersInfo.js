@@ -75,7 +75,6 @@ function PlayersInfo() {
 		}
 	};
 
-	// console.log(API_URL + 'name');
 
 	return (
 		<section>
@@ -86,17 +85,14 @@ function PlayersInfo() {
 					</Typography>
 					<form onSubmit={handleSubmit}>
 						<Stack direction="row" spacing={2}>
-							{/* <label htmlFor="name">Name:</label> */}
 							<TextField
 								type="text"
 								variant="outlined"
 								onChange={handleChange}
 								id="name"
-								// value={playersData.name}
 								defaultValue={playersData.name}
 							/>
 
-							{/* <label htmlFor="wins">Wins:</label> */}
 							<TextField
 								type="number"
 								variant="outlined"
@@ -105,7 +101,6 @@ function PlayersInfo() {
 								defaultValue={playersData.wins}
 							/>
 
-							{/* <label htmlFor="losses">losses:</label> */}
 							<TextField
 								type="number"
 								variant="outlined"
@@ -137,12 +132,10 @@ function PlayersInfo() {
 
 					<Typography className="editbuttonsContainer">
 						<Button variant="contained" color="success" onClick={editModal}>
-							{/* Edit
-							 */}
+							
 							<ModeEditIcon />
 						</Button>
 						<Button variant="contained" color="error" onClick={handleDelete}>
-							{/* Delete */}
 							<DeleteIcon />
 						</Button>
 					</Typography>

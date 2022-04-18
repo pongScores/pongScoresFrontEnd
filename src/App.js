@@ -8,7 +8,7 @@ import Match from './Components/Match/Match';
 import API_URL from './apiConfig';
 import Nav from './Components/Nav/Nav';
 import { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
 	const [playersData, setPlayersData] = useState([]);

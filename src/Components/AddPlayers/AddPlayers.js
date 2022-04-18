@@ -3,18 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddPlayers.css';
 import API_URL from '../../apiConfig';
-import {
-	Button,
-	IconButton,
-	Stack,
-	TextField,
-	Typography,
-} from '@mui/material';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 
 function AddPlayers(props) {
-	// const { _id } = useParams();
 	const navigate = useNavigate();
-	// Hooks
 	const [player, setPlayer] = useState({
 		name: '',
 		wins: '',

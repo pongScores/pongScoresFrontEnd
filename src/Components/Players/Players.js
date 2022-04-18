@@ -1,15 +1,12 @@
 // Players.js
 import React, { useState, useEffect } from 'react';
 import './Players.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { shadows } from '@mui/system';
 import { lightBlue } from '@mui/material/colors';
 
 import {
-	// Button,
-	// IconButton,
 	Table,
 	TableBody,
 	TableCell,
@@ -17,11 +14,7 @@ import {
 	TableHead,
 	TableRow,
 	Paper,
-	// Avatar,
-	// Grid,
 	Typography,
-	// TablePagination,
-	// TableFooter,
 } from '@mui/material';
 
 function Players(props) {

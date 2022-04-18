@@ -54,9 +54,6 @@ function Match(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		// console.log(selectState);
-		// console.log(selectState.winner);
-		// console.log(playersData);
 
 		for (let i = 0; i < playersData.length; i++) {
 			if (selectState.winner === selectState.loser) {
@@ -128,13 +125,7 @@ function Match(props) {
 							{options}
 						</select>
 					</h3>
-					{/* Why does this not work? */}
-					{/* <button
-						type="submit"
-						onClick={() => {
-							handleSubmit();
-							toggleResults();
-						}}> */}
+
 					<button type="submit" onClick={handleSubmit}>
 						Submit
 					</button>
