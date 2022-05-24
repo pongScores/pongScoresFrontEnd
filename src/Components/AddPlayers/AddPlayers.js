@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AddPlayers.css';
+import Players from '../Players/Players';
 import API_URL from '../../apiConfig';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 
-function AddPlayers(props) {
+function AddPlayers(Players) {
+	console.log(Players);
 	const navigate = useNavigate();
 	const [player, setPlayer] = useState({
 		name: '',
@@ -25,7 +27,6 @@ function AddPlayers(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(player);
 		axios
 			.post(API_URL, player)
 			.then((res) => {
@@ -35,6 +36,7 @@ function AddPlayers(props) {
 			})
 			.catch(console.error);
 		setPlayer(initialPlayerState);
+		// update state of players.js here
 	};
 
 	return (
@@ -48,7 +50,7 @@ function AddPlayers(props) {
 						label="Name"
 						onChange={handleChange}
 						id="name"
-						value={player.player}
+						value={player.name}
 						key={player._id}
 						variant="outlined"
 						required

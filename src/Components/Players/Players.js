@@ -28,6 +28,7 @@ function Players(props) {
 			})
 			.catch(console.error);
 	}, []);
+	// pass down setPlayersData as a prop to addPlayers
 
 	return (
 		<div className="playersBodyContainer">
