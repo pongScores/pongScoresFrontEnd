@@ -6,8 +6,8 @@ import Players from '../Players/Players';
 import API_URL from '../../apiConfig';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 
-function AddPlayers(Players) {
-	console.log(Players);
+function AddPlayers(props) {
+	console.log(props);
 	const navigate = useNavigate();
 	const [player, setPlayer] = useState({
 		name: '',
