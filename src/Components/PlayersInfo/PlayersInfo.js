@@ -45,14 +45,13 @@ function PlayersInfo() {
 			const res = await axios.put(API_URL + `${name}`, playersData);
 			console.log(playersData);
 			console.log(API_URL + `${name}`);
-
-			if (res.status === 201) {
+			if (res.status === 200) {
 				setModal(false);
+        navigate('/players');
 			}
 		} catch (error) {
 			console.log(error);
 		}
-		navigate('/');
 	};
 
 	const handleDelete = async () => {
@@ -62,13 +61,12 @@ function PlayersInfo() {
 		if (confirm) {
 			try {
 				const res = await axios.delete(API_URL + `${name}`);
-				if (res.status === 201) {
-					navigate('/');
+				if (res.status === 200) {
+					navigate('/players');
 				}
 			} catch (error) {
 				console.log(error);
 			}
-			navigate('/');
 		}
 		if (!playersData) {
 			return <h1>Loading...</h1>;

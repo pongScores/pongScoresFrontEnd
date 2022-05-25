@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 
 function Players(props) {
-	const [playersData, setPlayersData] = useState([]);
+	const { playersData, setPlayersData } = props;
 
 	useEffect(() => {
 		fetch(API_URL)
@@ -27,7 +27,7 @@ function Players(props) {
 				setPlayersData(data);
 			})
 			.catch(console.error);
-	}, []);
+	}, [setPlayersData]);
 	// pass down setPlayersData as a prop to addPlayers
 
 	return (
@@ -60,7 +60,7 @@ function Players(props) {
 							color: 'text.primary',
 							justifyContent: 'center',
 						}}>
-						{props.playersData.map((element) => {
+						{playersData.map((element) => {
 							return (
 								<TableRow
 									element={element}
