@@ -18,7 +18,21 @@ import {
 } from '@mui/material';
 
 function Players(props) {
-	const [playersData, setPlayersData] = useState([]);
+	console.log(props);
+	const { playersData, setPlayersData } = props;
+	// Curly braces will look for keys in specific object (playersData)
+
+	// const { pet } = obj;
+
+	// const pet = obj.pet; // same thing
+
+	// obj
+	// {
+	// 	pet: 'comfy',
+	// 	kick: 'karate',
+	//   square: 'shape',
+	// }
+
 
 	useEffect(() => {
 		fetch(API_URL)
@@ -60,7 +74,7 @@ function Players(props) {
 							color: 'text.primary',
 							justifyContent: 'center',
 						}}>
-						{props.playersData.map((element) => {
+						{playersData.map((element) => {
 							return (
 								<TableRow
 									element={element}
