@@ -18,7 +18,10 @@ import {
 } from '@mui/material';
 
 function Players(props) {
+
 	const { playersData, setPlayersData } = props;
+
+
 
 	useEffect(() => {
 		fetch(API_URL)
