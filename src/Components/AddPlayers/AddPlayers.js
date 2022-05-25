@@ -30,13 +30,12 @@ function AddPlayers(props) {
 		axios
 			.post(API_URL, player)
 			.then((res) => {
-				if (res.status === 200) {
+				if (res.status === 201) {
 					navigate('/players');
 				}
 			})
 			.catch(console.error);
 		setPlayer(initialPlayerState);
-		// update state of players.js here
 	};
 
 	return (

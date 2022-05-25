@@ -18,20 +18,9 @@ import {
 } from '@mui/material';
 
 function Players(props) {
-	console.log(props);
+
 	const { playersData, setPlayersData } = props;
-	// Curly braces will look for keys in specific object (playersData)
 
-	// const { pet } = obj;
-
-	// const pet = obj.pet; // same thing
-
-	// obj
-	// {
-	// 	pet: 'comfy',
-	// 	kick: 'karate',
-	//   square: 'shape',
-	// }
 
 
 	useEffect(() => {
@@ -41,7 +30,7 @@ function Players(props) {
 				setPlayersData(data);
 			})
 			.catch(console.error);
-	}, []);
+	}, [setPlayersData]);
 	// pass down setPlayersData as a prop to addPlayers
 
 	return (
